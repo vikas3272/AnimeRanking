@@ -1,0 +1,47 @@
+<div>
+    <div class="card-container">
+        <div class="details">
+            <div class="item" *ngFor="let data of AnimeData; let i = index">
+                <div class="content-wrapper">
+                    <div class="content" [ngClass]="{'content-selected': selectedItem == i}" (mouseenter)="mouseDown(i)"
+                        ((mouseleave))="mouseUp()">
+
+                        <img [src]="data.images.jpg.image_url" class="card-img-top" alt="...">
+                        <span class="rank">{{data.rank}}</span>
+                        <div>
+                            <span class="title-text">{{data.title}}</span>
+                        </div>
+                        <div *ngIf="selectedItem == i">
+                            <div class="title-text">
+                                <span class="card-items-headings-title">Release : </span>
+                                <span class="card-items-headings-data">{{data.aired.from | date: 'EEE, MMM d, y'}}</span>
+                            </div>
+
+                            <div class="title-text" *ngIf="data.aired.to ; else defaultAirto">
+                                <span class="card-items-headings-title">Lastest : </span> 
+                                <span class="card-items-headings-data">: {{data.aired.to | date:'fullDate'}}</span>
+                            </div>
+
+                            <div class="title-text">
+                                <span class="card-items-headings-title">Rating :</span>
+                                <span class="card-items-headings-data">{{data.rating}}</span>
+                            </div>
+
+                            
+                                <ng-template #defaultAirto>
+                                    <div class="title-text">
+                                        <span class="card-items-headings-title">Lastest : </span>
+                                        <span class="card-items-headings-data">Now</span>
+                                    </div>
+                                </ng-template>
+                             
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
